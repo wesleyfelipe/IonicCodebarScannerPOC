@@ -2,6 +2,7 @@ angular.module('scanner.controllers', [])
     .controller('HomeController', function($scope, $rootScope, $cordovaBarcodeScanner, $ionicPlatform, $cordovaSQLite) {
         var vm = this;
         $scope.codigosLidos = [];
+        var db = $cordovaSQLite.openDB({name: "my.db"});
 
         vm.scan = function(){
             $ionicPlatform.ready(function() {
@@ -36,6 +37,8 @@ angular.module('scanner.controllers', [])
         }
 
         $scope.selectAll = function() {
+            $scope.codigosLidos = [];
+            console.log(">>>>>>>>>>>>>>>>>>>>> TESTE");
             var query = "SELECT * FROM codigos_lidos";
             $cordovaSQLite.execute(db, query).then(function(res) {
                 if(res.rows.length > 0) {
@@ -50,6 +53,6 @@ angular.module('scanner.controllers', [])
             });
         }
 
-        //$scope.selectAll();
+        $scope.selectAll();
         vm.scanResults = {};
     });

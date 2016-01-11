@@ -9,25 +9,30 @@
             </div>
         </div>
 
+        <div class="list">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Texto</span>
+            <input id="texto" ng-model="vm.scanResults.texto" disabled="disabled"/>
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Formato</span>
+            <input id="formato" ng-model="vm.scanResults.formato" disabled="disabled"/>
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Cancelado</span>
+            <input id="cancelado" ng-model="vm.scanResults.cancelado" disabled="disabled"/>
+          </label>
+        </div>
+
         <div class="card">
-            <div class="item item-divider">
-                Scan Results
-            </div>
-            <div class="item item-text-wrap">
-                <label for="texto">Texto</label> <input id="texto" ng-model="vm.scanResults.texto" disabled="disabled"/>
-            </div>
-            <div class="item item-text-wrap">
-                <label for="formato">Formato</label> <input id="formato" ng-model="vm.scanResults.formato" disabled="disabled"/>
-            </div>
-            <div class="item item-text-wrap">
-                <label for="cancelado">Cancelado</label> <input id="cancelado" ng-model="vm.scanResults.cancelado" disabled="disabled"/>
-            </div>
-            <div class="item item-text-wrap">
-                <button type="button" ng-click="addResultado()">
+            <div class="item">
+                <button type="button" ng-click="addResultado()" class="button button-dark button-full">
                     Incluir
                 </button>
             </div>
         </div>
+
+        
 
         <div class="card">
             <div class="item item-divider">
