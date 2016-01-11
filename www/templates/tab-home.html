@@ -1,0 +1,48 @@
+<ion-view view-title="Scanner">
+    <ion-content style="background: #e8ebf1;" class="padding">
+        <div class="card">
+            <div class="item">
+                <button class="button button-block button-positive" ng-click="vm.scan()">
+                    <i class="icon ion-qr-scanner"></i>
+                    Scan Now
+                </button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="item item-divider">
+                Scan Results
+            </div>
+            <div class="item item-text-wrap">
+                <label for="texto">Texto</label> <input id="texto" ng-model="vm.scanResults.texto" disabled="disabled"/>
+            </div>
+            <div class="item item-text-wrap">
+                <label for="formato">Formato</label> <input id="formato" ng-model="vm.scanResults.formato" disabled="disabled"/>
+            </div>
+            <div class="item item-text-wrap">
+                <label for="cancelado">Cancelado</label> <input id="cancelado" ng-model="vm.scanResults.cancelado" disabled="disabled"/>
+            </div>
+            <div class="item item-text-wrap">
+                <button type="button" ng-click="addResultado()">
+                    Incluir
+                </button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="item item-divider">
+                Registros
+            </div>
+             <div class="row header">
+                  <div class="col">Texto</div>
+                  <div class="col">Formato</div>
+                  <div class="col">Cancelado</div>
+            </div>
+            <div class="row" ng-repeat="codigo in codigosLidos">
+                  <div class="col">{{codigo.texto}}</div>
+                  <div class="col"></div>
+                  <div class="col"></div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
