@@ -1,7 +1,7 @@
 // Ionic Starter App
 
 //Variavel para armazenar a conexão com o banco
-var db = null;
+//var db = null;
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
@@ -50,8 +50,8 @@ angular.module('scanner', [
     };
 
     //Teste SqLite
-    db = $cordovaSQLite.openDB({name: "my.db"});
-    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS codigos_lidos (id integer primary key, texto text, formato text, cancelado text)");
+    //db = $cordovaSQLite.openDB({name: "my.db"});
+    //$cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS codigos_lidos (id integer primary key, texto text, formato text, cancelado text)");
 
 
     // Watch Ionic Deploy service for new code
