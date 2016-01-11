@@ -17,18 +17,6 @@ angular.module('scanner', [
   'scanner.controllers'
 ])
 
-.config(['$ionicAppProvider', function($ionicAppProvider) {
-  // Identify app
-  $ionicAppProvider.identify({
-    // The App ID (from apps.ionic.io) for the server
-    app_id: 'YOUR_APP_ID',
-    // The public API key all services will use for this app
-    api_key: 'YOUR_API_KEY',
-    // The GCM project ID (project number) from your Google Developer Console (un-comment if used)
-    //gcm_id: 'GCM_ID',
-  });
-}])
-
 .run(function($rootScope, $ionicDeploy, $ionicPlatform, $cordovaStatusbar, $cordovaSQLite) {
 
   $ionicPlatform.ready(function() {
