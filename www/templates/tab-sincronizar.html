@@ -1,0 +1,27 @@
+<ion-view view-title="Sincronizar">
+    <ion-content style="background: #e8ebf1;" class="padding">
+        <div class="card">
+            <div class="item">
+                <button class="button button-block button-positive">
+                    Sincronizar Agora
+                </button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="item item-divider">
+                Registros
+            </div>
+             <div class="row header">
+                  <div class="col">Texto</div>
+                  <div class="col">Formato</div>
+                  <div class="col">Cancelado</div>
+            </div>
+            <div class="row" ng-repeat="codigo in codigosLidos">
+                  <div class="col">{{codigo.texto}}</div>
+                  <div class="col">{{codigo.formato}}</div>
+                  <div class="col">{{codigo.cancelado}}</div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

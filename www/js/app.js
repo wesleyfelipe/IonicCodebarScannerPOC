@@ -68,17 +68,26 @@ angular.module('scanner', [
   // Each tab has its own nav history stack:
 
   // Welcome tab
-  .state('tab.home', {
-    url: '/home',
+  .state('tab.atendimento', {
+    url: '/atendimento',
     views: {
-      'tab-home': {
-        templateUrl: 'templates/tab-home.html',
+      'tab-atendimento': {
+        templateUrl: 'templates/tab-atendimento.html',
         controller: 'HomeController as vm'
+      }
+    }
+  })
+  .state('tab.sincronizar', {
+    url: '/sincronizar',
+    views: {
+      'tab-sincronizar': {
+        templateUrl: 'templates/tab-sincronizar.html',
+        controller: 'sincronizar as vm'
       }
     }
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/home');
+  $urlRouterProvider.otherwise('/tab/atendimento');
 
 });
