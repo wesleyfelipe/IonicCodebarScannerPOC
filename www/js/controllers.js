@@ -39,8 +39,9 @@ angular.module('scanner.controllers', [])
             var query = "SELECT * FROM codigos_lidos";
             $cordovaSQLite.execute(db, query).then(function(res) {
                 if(res.rows.length > 0) {
-                    alert("LEU!" + rows);
-                    codigosLidos = res.rows;
+                    for(var i = 0; i < res.rows.length; i++) {
+                        $scope.codigosLidos.push(res.rows.item(i));
+                    }
                 } else {
                     console.log("No results found");
                 }
