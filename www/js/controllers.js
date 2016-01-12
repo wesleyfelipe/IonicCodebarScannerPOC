@@ -1,8 +1,8 @@
 angular.module('scanner.controllers', [])
-    .controller('HomeController', function($scope, $rootScope, $cordovaBarcodeScanner, $ionicPlatform, $cordovaSQLite) {
+    .controller('AtendimentoController', function($scope, $rootScope, $cordovaBarcodeScanner, $ionicPlatform, $cordovaSQLite) {
         var vm = this;
         $scope.codigosLidos = [];
-        var db = $cordovaSQLite.openDB({name: "my.db"});
+        //var db = $cordovaSQLite.openDB({name: "my.db"});
 
         vm.scan = function(){
             $ionicPlatform.ready(function() {
@@ -10,6 +10,8 @@ angular.module('scanner.controllers', [])
                     .scan()
                     .then(function(result) {
                         // Success! Barcode data is here
+                        alert("Scanned!");
+
                         vm.scanResults.texto = result.text;
                         vm.scanResults.formato = result.format;
                         vm.scanResults.cancelado = result.cancelled;
@@ -38,7 +40,6 @@ angular.module('scanner.controllers', [])
 
         $scope.selectAll = function() {
             $scope.codigosLidos = [];
-            console.log(">>>>>>>>>>>>>>>>>>>>> TESTE");
             var query = "SELECT * FROM codigos_lidos";
             $cordovaSQLite.execute(db, query).then(function(res) {
                 if(res.rows.length > 0) {
@@ -55,4 +56,13 @@ angular.module('scanner.controllers', [])
 
         $scope.selectAll();
         vm.scanResults = {};
+    })
+
+
+    .controller('SincronizacaoController', function($scope, $rootScope){
+
+    })
+
+    .controller('HomeController', function($scope, $rootScope){
+
     });

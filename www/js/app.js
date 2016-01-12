@@ -1,7 +1,7 @@
 // Ionic Starter App
 
 //Variavel para armazenar a conexão com o banco
-//var db = null;
+var db = null;
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
@@ -38,8 +38,8 @@ angular.module('scanner', [
     };
 
     //Teste SqLite
-    //db = $cordovaSQLite.openDB({name: "my.db"});
-    //$cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS codigos_lidos (id integer primary key, texto text, formato text, cancelado text)");
+    db = $cordovaSQLite.openDB({name: "my.db"});
+    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS codigos_lidos (id integer primary key, texto text, formato text, cancelado text)");
 
 
     // Watch Ionic Deploy service for new code
@@ -73,7 +73,7 @@ angular.module('scanner', [
     views: {
       'tab-atendimento': {
         templateUrl: 'templates/tab-atendimento.html',
-        controller: 'HomeController as vm'
+        controller: 'AtendimentoController as vm'
       }
     }
   })
@@ -82,12 +82,21 @@ angular.module('scanner', [
     views: {
       'tab-sincronizar': {
         templateUrl: 'templates/tab-sincronizar.html',
-        controller: 'sincronizar as vm'
+        controller: 'SincronizacaoController as sc'
+      }
+    }
+  })
+  .state('tab.home', {
+    url: '/home',
+    views: {
+      'tab-home': {
+        templateUrl: 'templates/tab-home.html',
+        controller: 'HomeController as hm'
       }
     }
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/atendimento');
+  $urlRouterProvider.otherwise('/tab/home');
 
 });

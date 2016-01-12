@@ -5,13 +5,18 @@ navigation history that also transitions its views in and out.
 -->
 <ion-tabs class="tabs-icon-top tabs-background-dark tabs-color-stable">
 
+	<!-- Tab Home -->
+  <ion-tab title="Home" icon-off="ion-home" icon-on="ion-home" href="#/tab/home">
+    <ion-nav-view name="tab-home"></ion-nav-view>
+  </ion-tab>
+
   <!-- Tab Atendimento -->
-  <ion-tab title="Atendimento" icon-off="ion-ios-ionic-outline" icon-on="ion-ionic" href="#/tab/atendimento">
+  <ion-tab title="Atendimento" icon-off="ion-medkit" icon-on="ion-medkit" href="#/tab/atendimento">
     <ion-nav-view name="tab-atendimento"></ion-nav-view>
   </ion-tab>
 
   <!-- Tab Sincronizar -->
-  <ion-tab title="Sincronizar" icon-off="ion-ios-ionic-outline" icon-on="ion-ionic" href="#/tab/sincronizar">
+  <ion-tab title="Sincronizar" icon-off="ion-android-sync" icon-on="ion-android-sync" href="#/tab/sincronizar">
     <ion-nav-view name="tab-sincronizar"></ion-nav-view>
   </ion-tab>
 
