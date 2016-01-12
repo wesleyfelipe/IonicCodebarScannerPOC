@@ -8,13 +8,13 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('scanner', [
-  'ionic','ionic.service.core',
+angular.module('starter', [
+  'ionic',
+  'ionic.service.core',
   'ngCordova',
-  
   'ionic.service.push',
   'ionic.service.deploy',
-  'scanner.controllers'
+  'starter.controllers'
 ])
 
 .run(function($rootScope, $ionicDeploy, $ionicPlatform, $cordovaStatusbar, $cordovaSQLite) {
@@ -27,9 +27,12 @@ angular.module('scanner', [
     }
 
     // Color the iOS status bar text to white
-    if (window.StatusBar) {
-      $cordovaStatusbar.overlaysWebView(true);
-      $cordovaStatusbar.style(1); //Light
+    //if (window.StatusBar) {
+    //  $cordovaStatusbar.overlaysWebView(true);
+    //  $cordovaStatusbar.style(1); //Light
+    //}
+    if(window.StatusBar) {
+      StatusBar.styleDefault();
     }
 
     // Default update checking
@@ -38,8 +41,8 @@ angular.module('scanner', [
     };
 
     //Teste SqLite
-    //db = $cordovaSQLite.openDB({name: "my.db"});
-    //$cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS codigos_lidos (id integer primary key, texto text, formato text, cancelado text)");
+    db = $cordovaSQLite.openDB({name: "my.db"});
+    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS codigos_lidos (id integer primary key, texto text, formato text, cancelado text)");
 
 
     // Watch Ionic Deploy service for new code
@@ -49,45 +52,44 @@ angular.module('scanner', [
     });
   });
 })
-
 .config(function($stateProvider, $urlRouterProvider) {
-
-  // Ionic uses AngularUI Router which uses the concept of states
-  // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
-  // Each state's controller can be found in controllers.js
   $stateProvider
 
-  // setup an abstract state for the tabs directive
-    .state('tab', {
-    url: "/tab",
-    abstract: true,
-    templateUrl: "templates/tabs.html"
-  })
+    .state('menu', {
+      url: "/menu",
+      abstract: true,
+      templateUrl: "templates/menu.html",
+      controller: 'MenuController'
+    })
 
-  // Each tab has its own nav history stack:
-
-  // Welcome tab
-  .state('tab.atendimento', {
-    url: '/atendimento',
-    views: {
-      'tab-atendimento': {
-        templateUrl: 'templates/tab-atendimento.html',
-        controller: 'HomeController as vm'
+    .state('menu.atendimento', {
+      url: "/atendimento",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/atendimento.html",
+          controller: 'AtendimentoController'
+        }
       }
-    }
-  })
-  .state('tab.sincronizar', {
-    url: '/sincronizar',
-    views: {
-      'tab-sincronizar': {
-        templateUrl: 'templates/tab-sincronizar.html',
-        controller: 'sincronizar as vm'
-      }
-    }
-  });
+    })
 
+    .state('menu.sincronizar', {
+      url: "/sincronizar",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/sincronizar.html"
+        }
+      }
+    })
+
+    .state('menu.home', {
+      url: "/home",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/home.html",
+          controller: 'HomeController'
+        }
+      }
+    });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/atendimento');
-
+  $urlRouterProvider.otherwise('/menu/home');
 });

@@ -1,8 +1,9 @@
-angular.module('scanner.controllers', [])
-    .controller('HomeController', function($scope, $rootScope, $cordovaBarcodeScanner, $ionicPlatform, $cordovaSQLite) {
+angular.module('starter.controllers', [])
+
+    .controller('AtendimentoController', function($scope, $rootScope, $cordovaBarcodeScanner, $ionicPlatform, $cordovaSQLite) {
         var vm = this;
         $scope.codigosLidos = [];
-        var db = $cordovaSQLite.openDB({name: "my.db"});
+        //var db = $cordovaSQLite.openDB({name: "my.db"});
 
         vm.scan = function(){
             $ionicPlatform.ready(function() {
@@ -10,20 +11,24 @@ angular.module('scanner.controllers', [])
                     .scan()
                     .then(function(result) {
                         // Success! Barcode data is here
-                        vm.scanResults.texto = result.text;
-                        vm.scanResults.formato = result.format;
-                        vm.scanResults.cancelado = result.cancelled;
+                        //vm.scanResults.texto = result.text;
+                        //vm.scanResults.formato = result.format;
+                        //vm.scanResults.cancelado = result.cancelled;
+                        
+
+                        $scope.addResultado(result);
                     }, function(error) {
                         // An error occurred
-                        vm.scanResults = 'Error: ' + error;
+                        //vm.scanResults = 'Error: ' + error;
                     });
             });
         };
 
-        $scope.addResultado = function(){
-            if(vm.scanResults !== {}){
-                $scope.insert(vm.scanResults.texto, vm.scanResults.formato, vm.scanResults.cancelado);
+        $scope.addResultado = function(result){
+            if(result !== {}){
+                $scope.insert(result.texto, result.formato, result.cancelado);
                 $scope.selectAll();
+                //vm.scan();
             }
         }
 
@@ -53,6 +58,12 @@ angular.module('scanner.controllers', [])
             });
         }
 
-        $scope.selectAll();
-        vm.scanResults = {};
-    });
+        //$scope.selectAll();
+        //vm.scanResults = {};
+    })
+
+    .controller('MenuController', function($scope) {
+    })
+
+    .controller('HomeController', function($scope, $stateParams) {
+    })
