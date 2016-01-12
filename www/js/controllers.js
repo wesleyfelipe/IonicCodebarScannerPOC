@@ -3,30 +3,24 @@ angular.module('starter.controllers', [])
     .controller('AtendimentoController', function($scope, $rootScope, $cordovaBarcodeScanner, $ionicPlatform, $cordovaSQLite) {
         var vm = this;
         $scope.codigosLidos = [];
-        //var db = $cordovaSQLite.openDB({name: "my.db"});
 
-        vm.scan = function(){
+        $scope.scan = function(){
             $ionicPlatform.ready(function() {
                 $cordovaBarcodeScanner
                     .scan()
                     .then(function(result) {
                         // Success! Barcode data is here
-                        //vm.scanResults.texto = result.text;
-                        //vm.scanResults.formato = result.format;
-                        //vm.scanResults.cancelado = result.cancelled;
-                        
-
                         $scope.addResultado(result);
                     }, function(error) {
-                        // An error occurred
-                        //vm.scanResults = 'Error: ' + error;
+                        alert("Erro ao ler QRCode.");
                     });
             });
         };
 
         $scope.addResultado = function(result){
             if(result !== {}){
-                $scope.insert(result.texto, result.formato, result.cancelado);
+                alert(JSON.stringify(result));
+                $scope.insert(result.text, result.format, result.cancelled);
                 $scope.selectAll();
                 //vm.scan();
             }
@@ -58,8 +52,7 @@ angular.module('starter.controllers', [])
             });
         }
 
-        //$scope.selectAll();
-        //vm.scanResults = {};
+        $scope.selectAll();
     })
 
     .controller('MenuController', function($scope) {

@@ -5,37 +5,12 @@
     <ion-content style="background: #e8ebf1;" class="padding">
         <div class="card">
             <div class="item">
-                <button class="button button-block button-positive" ng-click="vm.scan()">
+                <button class="button button-block button-positive" ng-click="scan()">
                     <i class="icon ion-qr-scanner"></i>
                     Scan Now
                 </button>
             </div>
-        </div>
-
-        <div class="list">
-          <label class="item item-input item-stacked-label">
-            <span class="input-label">Texto</span>
-            <input id="texto" ng-model="vm.scanResults.texto" disabled="disabled"/>
-          </label>
-          <label class="item item-input item-stacked-label">
-            <span class="input-label">Formato</span>
-            <input id="formato" ng-model="vm.scanResults.formato" disabled="disabled"/>
-          </label>
-          <label class="item item-input item-stacked-label">
-            <span class="input-label">Cancelado</span>
-            <input id="cancelado" ng-model="vm.scanResults.cancelado" disabled="disabled"/>
-          </label>
-        </div>
-
-        <div class="card">
-            <div class="item">
-                <button type="button" ng-click="addResultado()" class="button button-dark button-full">
-                    Incluir
-                </button>
-            </div>
-        </div>
-
-        
+        </div>      
 
         <div class="card">
             <div class="item item-divider">
