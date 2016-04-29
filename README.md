@@ -1,1 +1,1 @@
-# ionic-qrcode-sqlite 
+# IonicCodebarScannerPOC
