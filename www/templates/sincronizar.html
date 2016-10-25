@@ -4,12 +4,28 @@
   </ion-nav-buttons>
     <ion-content style="background: #e8ebf1;" class="padding">
         <div class="card">
+            <label class="item item-input">
+              <span class="input-label">Qtd</span>
+              <input type="number" ng-model="poc.qtd">
+            </label>
             <div class="item">
-                <button class="button button-block button-positive">
+                <button class="button button-block button-positive" ng-click="insertAll()">
                     Sincronizar Agora
                 </button>
             </div>
         </div>
+         <label class="item item-input">
+            <span class="input-label">Início</span>
+            <input ng-model="poc.initial | date:'HH:mm:ss'">
+          </label>
+           <label class="item item-input">
+            <span class="input-label">Tempo</span>
+            <input ng-model="poc.final | date:'HH:mm:ss'">
+          </label>
+         <label class="item item-input">
+            <span class="input-label">Tempo</span>
+            <input ng-model="poc.total">
+          </label>
 
         <div class="card">
             <div class="item item-divider">

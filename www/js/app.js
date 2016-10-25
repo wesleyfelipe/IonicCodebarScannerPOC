@@ -41,7 +41,7 @@ angular.module('starter', [
     };
 
     //Teste SqLite
-    db = $cordovaSQLite.openDB({name: "my.db"});
+    db = $cordovaSQLite.openDB({name: "my.db", location:'default'});
     $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS codigos_lidos (id integer primary key, texto text, formato text, cancelado text)");
 
 
@@ -76,7 +76,8 @@ angular.module('starter', [
       url: "/sincronizar",
       views: {
         'menuContent' :{
-          templateUrl: "templates/sincronizar.html"
+          templateUrl: "templates/sincronizar.html",
+          controller: 'SyncController'
         }
       }
     })

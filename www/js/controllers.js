@@ -60,3 +60,64 @@ angular.module('starter.controllers', [])
 
     .controller('HomeController', function($scope, $stateParams) {
     })
+
+    .controller('SyncController', function($scope, $cordovaSQLite, $q) {
+
+        $scope.poc = {
+            qtd : 0,
+            initial : 0,
+            final: 0,
+            total: 0
+        }
+
+        $scope.insert = function(tx, texto, formato, cancelado) {
+            var query = "INSERT INTO codigos_lidos (texto, formato, cancelado) VALUES (?,?,?)";
+            return tx.executeSql(query, [texto, formato, cancelado]);
+        }
+
+        var insertAllTransaction = function(){
+            var deferred = $q.defer();
+            db.transaction(function(tx) {
+                var i = 0;
+                while(i < $scope.poc.qtd){
+                    $scope.insert(tx, 'teste', 'teste', 'teste');
+                    i++;
+                }
+              }, function(error) {
+                console.log('Transaction ERROR: ' + error.message);
+                deferred.reject();
+              }, function() {
+                console.log('Populated database OK');
+                deferred.resolve(true);
+              });
+            return deferred.promise;
+        }
+
+         var logaRegistros = function(){
+            var query = "SELECT * FROM codigos_lidos";
+            $cordovaSQLite.execute(db, query).then(function(res) {
+                console.log("Quantidade de registros no banco: " + res.rows.length);
+            }, function (err) {
+                console.error(err);
+            });
+        }
+
+        var limparBanco = function(){
+            var sql = "DELETE FROM codigos_lidos";
+            $cordovaSQLite.execute(db, sql);
+        }
+
+        $scope.insertAll = function(){
+            logaRegistros()
+
+            $scope.poc.initial = Date.now();
+            var pro = insertAllTransaction();
+            pro.then(function(){
+                $scope.poc.final = Date.now();
+                $scope.poc.total = ($scope.poc.final - $scope.poc.initial) / 1000;
+                console.log('Finalizou transação')
+                logaRegistros();
+                //limparBanco(); 
+            });
+        }
+    })
